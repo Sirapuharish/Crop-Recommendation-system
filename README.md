@@ -12,9 +12,6 @@ python app.py
 
 3. Open the app
 
-Go to your browser and open:
-
-http://127.0.0.1:5000
 
 📂 Project Structure
 ├── app.py
