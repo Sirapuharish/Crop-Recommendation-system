@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Recommendation System</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+    <!-- Theme Toggle -->
+    <div class="theme-toggle">
+        <button id="toggleBtn" onclick="toggleTheme()">🌙 Dark Mode</button>
+    </div>
+
+    <div class="glass-card">
+        <h2 class="title">🌾 Crop Recommendation</h2>
+
+        <form method="POST" action="/predict">
+
+            <label>Nitrogen (N)</label>
+            <input type="number" name="N" placeholder="e.g., 90" required>
+
+            <label>Phosphorus (P)</label>
+            <input type="number" name="P" placeholder="e.g., 42" required>
+
+            <label>Potassium (K)</label>
+            <input type="number" name="K" placeholder="e.g., 43" required>
+
+            <label>Temperature (°C)</label>
+            <input type="number" name="temperature" step="0.1" placeholder="e.g., 22.5" required>
+
+            <label>Humidity (%)</label>
+            <input type="number" name="humidity" step="0.1" placeholder="e.g., 80" required>
+
+            <label>Soil pH</label>
+            <input type="number" name="ph" step="0.1" placeholder="e.g., 6.5" required>
+
+            <label>Rainfall (mm)</label>
+            <input type="number" name="rainfall" step="0.1" placeholder="e.g., 200" required>
+
+            <button type="submit" class="btn-submit">Predict Crop 🌱</button>
+        </form>
+
+        {% if prediction_text %}
+            <div class="result">{{ prediction_text }}</div>
+        {% endif %}
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const btn = document.getElementById("toggleBtn");
+
+            if (html.getAttribute("data-theme") === "light") {
+                html.setAttribute("data-theme", "dark");
+                btn.textContent = "☀️ Light Mode";
+            } else {
+                html.setAttribute("data-theme", "light");
+                btn.textContent = "🌙 Dark Mode";
+            }
+        }
+    </script>
+
+</body>
+</html>
